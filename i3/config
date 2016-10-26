@@ -250,6 +250,7 @@ bar {
         }
 }
 
+workspace_auto_back_and_forth yes
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -297,9 +298,10 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id ~/.fehbg-slideshow
 
 #Startup scripts for naga 2014 button remap and steam
-exec --no-startup-id ckb --background
+exec --no-startup-id ckb --background #desktop-only
 exec --no-startup-id insync start
 
+#desktop-only
 workspace 4:Evolution output DisplayPort-0
 workspace 2:Web output DVI-1
 workspace 5:Music output DVI-0
@@ -310,7 +312,9 @@ workspace 6:devenv output DisplayPort-0
 workspace 10:StarMade output DisplayPort-0
 workspace Hangouts output Displayport-0
 workspace VMware output Displayport-0
+#/desktop-only
 
+#Workspace assignments
 assign [class="Evolution"] 4:Evolution
 assign [class="google-chrome"] 2:Web
 assign [class="Spotify"] 5:Music

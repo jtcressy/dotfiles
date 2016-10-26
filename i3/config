@@ -297,19 +297,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id ~/.fehbg-slideshow
 
 #Startup scripts for naga 2014 button remap and steam
-exec --no-startup-id ckb --background
 exec --no-startup-id insync start
-
-workspace 4:Evolution output DisplayPort-0
-workspace 2:Web output DVI-1
-workspace 5:Music output DVI-0
-workspace 3:Discord output DVI-0
-workspace 1:Steam output DisplayPort-0
-workspace 2:TeamViewer output DisplayPort-0
-workspace 6:devenv output DisplayPort-0
-workspace 10:StarMade output DisplayPort-0
-workspace Hangouts output Displayport-0
-workspace VMware output Displayport-0
 
 assign [class="Evolution"] 4:Evolution
 assign [class="google-chrome"] 2:Web

@@ -323,8 +323,7 @@ for_window [title="Hangouts"] move container to workspace Hangouts
 for_window [title="VMware"] move container to workspace VMware
 
 exec --no-startup-id evolution --force-online
-exec --no-startup-id google-chrome
+exec --no-startup-id firefox
 exec --no-startup-id spotify
 exec --no-startup-id discord-canary
-exec --no-startup-id ~/.config/autostart-scripts/steam.sh
-exec --no-startup-id ~/.config/i3/xsetwacom.sh
+exec --no-startup-id vmware

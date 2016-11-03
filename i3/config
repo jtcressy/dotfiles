@@ -324,7 +324,7 @@ assign [class="discord"] 3:Discord
 assign [class="Steam"] 1:Steam
 assign [class="TeamViewer"] 2:TeamViewer
 for_window [title="Hangouts"] move container to workspace Hangouts
-for_window [title="VMware"] move container to workspace VMware
+for_window [title="VMware Workstation"] move container to workspace VMware
 for_window [title="Visual Studio Code"] move container to workspace Code
 for_window [class="Atom"] move container to workspace Code
 

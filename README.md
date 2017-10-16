@@ -2,6 +2,6 @@
 
 
 ## Notes
-``.vimrc.`` requires https://github.com/zsh-users/zsh-autosuggestions for fancy fish-like autosuggestions
+``.vimrc`` requires https://github.com/zsh-users/zsh-autosuggestions for fancy fish-like autosuggestions
 
 

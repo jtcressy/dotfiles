@@ -1,0 +1,8 @@
+#!/bin/sh
+# Run by Codespaces after starting
+
+# Set zsh as default shell
+sudo chsh -s $(which zsh) $(whoami)
+
+# Default to signing git commits
+git config --global commit.gpgsign true

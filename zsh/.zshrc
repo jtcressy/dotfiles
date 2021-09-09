@@ -18,8 +18,6 @@ fi
 source $HOME/antigen.zsh
 antigen init $HOME/.antigenrc
 export PATH="${PATH}:${HOME}/.krew/bin"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 export PATH="${PATH}:${HOME}/go/bin"
 export PATH=/usr/local/sbin:$PATH

@@ -1,16 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # install.sh installs things.
 
 SCRIPT_NAME=${1:-"install.sh"}
 
 # Send all our -x output to this file for later debugging
-LOG_DIR="$HOME/install.sh.logs"
+LOG_DIR="$HOME/.install.sh.logs"
 mkdir -p "${LOG_DIR}"
 exec 1>"${LOG_DIR}/stdout"
 exec 2>"${LOG_DIR}/stderr"
-exec 19>"${LOG_DIR}/trace"
-BASH_XTRACEFD=19
 
 set -x
 
@@ -31,7 +29,7 @@ done
 if $CODESPACES
 then
   echo "Running Codespaces post start"
-  sh codespaces-post-start
+  sh ./codespaces-post-start
 fi
 
 echo ''

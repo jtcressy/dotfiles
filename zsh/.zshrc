@@ -7,6 +7,14 @@ gpgconf --launch gpg-agent
 alias home='git --work-tree=$HOME --git-dir=$HOME/.home'
 alias kx=kubectx
 alias kn=kubens
+source $HOME/.zsh-custom-functions
+
+# Make VSCode the default editor for the terminal ONLY if the environment
+# is codespaces, because we can rely on vscode being always available
+if $CODESPACES
+then
+  export EDITOR=code --wait
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

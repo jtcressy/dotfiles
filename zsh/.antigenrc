@@ -11,7 +11,10 @@ antigen bundle brew
 antigen bundle osx
 antigen bundle kubectl
 antigen bundle pyenv
-antigen bundle thefuck
+if command -v thefuck && [ -x "$(command -v thefuck)"];
+then
+  antigen bundle thefuck
+fi
 
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions

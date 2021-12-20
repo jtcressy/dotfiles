@@ -1,6 +1,10 @@
 #!/bin/sh
 #
 # install.sh installs things.
+# Absolute path to this script, e.g. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+SCRIPTPATH=$(dirname "$SCRIPT")
 
 SCRIPT_NAME=${1:-"install.sh"}
 
@@ -22,14 +26,14 @@ echo ''
 
 # find the installers and run them iteratively
 echo "👟 Running installers 👟"
-for installer in $(find . -name "*install-tool.sh"); do
+for installer in $(find $SCRIPTPATH -name "*install-tool.sh"); do
   sh -c "${installer}"
 done
 
 if $CODESPACES
 then
   echo "Running Codespaces post start"
-  sh ./codespaces-post-start
+  sh $SCRIPTPATH/codespaces-post-start
 fi
 
 echo ''

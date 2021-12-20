@@ -8,7 +8,7 @@ antigen bundle encode64
 antigen bundle history
 antigen bundle sprunge
 antigen bundle brew
-antigen bundle osx
+antigen bundle macos
 antigen bundle kubectl
 antigen bundle pyenv
 if command -v thefuck && [ -x "$(command -v thefuck)"];
@@ -24,7 +24,6 @@ antigen bundle chrissicool/zsh-256color
 antigen bundle bossjones/boss-docker-zsh-plugin
 antigen bundle bossjones/boss-git-zsh-plugin
 antigen bundle rawkode/zsh-docker-run
-antigen bundle zdharma/fast-syntax-highlighting
 antigen bundle axtl/gpg-agent.zsh
 antigen bundle Czocher/gpg-crypt
 antigen bundle digitalraven/omz-homebrew

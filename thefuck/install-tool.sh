@@ -4,7 +4,7 @@ then
   thefuck --version
 else
   echo "installing thefuck"
-  if [ "$(uname -s)" == "Darwin"]
+  if [ "$(uname -s)" == "Darwin" ];
   then
     brew install thefuck
   else

@@ -1,16 +1,13 @@
-if command -v thefuck;
+if command -v thefuck && [ -x "$(command -v thefuck)"];
 then
-  if [ -x "$(command -v thefuck)"];
+  echo "thefuck already installed"
+  thefuck --version
+else
+  echo "installing thefuck"
+  if [ "$(uname -s)" == "Darwin"]
   then
-    echo "thefuck already installed"
-    thefuck --version
+    brew install thefuck
   else
-    echo "installing thefuck"
-    if [ "$(uname -s)" == "Darwin"]
-    then
-      brew install thefuck
-    else
-      pip install thefuck
-    fi
+    pip install thefuck
   fi
 fi

@@ -1,3 +1,4 @@
+#!/bin/sh
 if command -v thefuck && [ -x "$(command -v thefuck)"];
 then
   echo "thefuck already installed"

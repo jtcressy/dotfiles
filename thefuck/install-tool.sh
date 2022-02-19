@@ -9,6 +9,6 @@ else
   then
     brew install thefuck
   else
-    pip install thefuck || true
+    pip install thefuck || pip3 install thefuck || true
   fi
 fi

@@ -11,7 +11,7 @@ antigen bundle brew
 antigen bundle macos
 antigen bundle kubectl
 antigen bundle pyenv
-if command -v thefuck && [ -x "$(command -v thefuck)"];
+if (command -v thefuck > /dev/null) && [ -x "$(command -v thefuck)" ];
 then
   antigen bundle thefuck
 fi

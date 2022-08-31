@@ -9,7 +9,6 @@ antigen bundle history
 antigen bundle sprunge
 antigen bundle brew
 antigen bundle macos
-antigen bundle kubectl
 antigen bundle pyenv
 if (command -v thefuck > /dev/null) && [ -x "$(command -v thefuck)" ];
 then

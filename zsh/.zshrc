@@ -5,8 +5,8 @@ gpgconf --launch gpg-agent
 
 # Aliases
 alias home='git --work-tree=$HOME --git-dir=$HOME/.home'
-alias kx=kubectx
-alias kn=kubens
+alias kx=kubectl-ctx
+alias kn=kubectl-ns
 alias tf=terraform
 if [ -f $HOME/.zsh-custom-functions ];
 then
@@ -33,6 +33,10 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 
 export PATH="${PATH}:${HOME}/go/bin"
 export PATH=/usr/local/sbin:$PATH
+
+[ $(command -v thefuck) ] && eval $(thefuck --alias)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

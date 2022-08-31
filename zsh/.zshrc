@@ -7,6 +7,7 @@ gpgconf --launch gpg-agent
 alias home='git --work-tree=$HOME --git-dir=$HOME/.home'
 alias kx=kubectx
 alias kn=kubens
+alias tf=terraform
 if [ -f $HOME/.zsh-custom-functions ];
 then
   source $HOME/.zsh-custom-functions

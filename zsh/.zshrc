@@ -1,3 +1,6 @@
+source $HOME/antigen.zsh
+antigen init $HOME/.antigenrc
+
 #GPG setup (todo: make this a dedicated gpg setup plugin for antigen on github)
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -27,10 +30,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source $HOME/antigen.zsh
-antigen init $HOME/.antigenrc
 export PATH="${PATH}:${HOME}/.krew/bin"
-
 export PATH="${PATH}:${HOME}/go/bin"
 export PATH=/usr/local/sbin:$PATH
 

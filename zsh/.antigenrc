@@ -1,5 +1,6 @@
 antigen use oh-my-zsh
 
+antigen bundle ohmyzsh/ohmyzsh
 antigen bundle git
 antigen bundle cp
 antigen bundle colorize
@@ -27,7 +28,7 @@ antigen bundle axtl/gpg-agent.zsh
 antigen bundle Czocher/gpg-crypt
 antigen bundle digitalraven/omz-homebrew
 antigen bundle changyuheng/zsh-interactive-cd
-antigen bundle unixorn/tumult.plugin.zsh
+antigen bundle unixorn/tumult.plugin.zsh@main
 antigen bundle rbirnie/oh-my-zsh-keybase
 antigen bundle littleq0903/gcloud-zsh-completion
 

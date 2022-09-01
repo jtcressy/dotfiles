@@ -16,6 +16,7 @@ fi
 # Install antigen for vundle-like package management for zsh
 curl -L git.io/antigen > "$HOME/antigen.zsh"
 
-cp zsh/.zshrc ~
-cp zsh/.antigenrc ~
-cp zsh/.p10k.zsh ~
+ln -s zsh/.zshrc ~
+ln -s zsh/.antigenrc ~
+ln -s zsh/.zsh-custom-functions ~
+ln -s zsh/.p10k.zsh ~

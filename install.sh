@@ -18,7 +18,7 @@ set -x
 
 echo "${SCRIPT_NAME} start: $(date)"
 
-DOTFILES_ROOT=$(pwd -P)
+export DOTFILES_ROOT=$(pwd -P)
 
 set -e
 

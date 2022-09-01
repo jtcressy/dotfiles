@@ -11,6 +11,7 @@ alias home='git --work-tree=$HOME --git-dir=$HOME/.home'
 alias kx=kubectl-ctx
 alias kn=kubectl-ns
 alias tf=terraform
+alias k9r="k9s --readonly"
 if [ -f $HOME/.zsh-custom-functions ];
 then
   source $HOME/.zsh-custom-functions

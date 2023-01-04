@@ -1,3 +1,13 @@
+#!/bin/sh
+#
+# install.sh installs things.
+# Absolute path to this script, e.g. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+SCRIPTPATH=$(dirname "$SCRIPT")
+
+SCRIPT_NAME=${1:-"install-tool.sh"}
+
 if ! [ -x "$(command -v zsh)" ]
 then
   echo "installing zsh"
@@ -16,7 +26,7 @@ fi
 # Install antigen for vundle-like package management for zsh
 curl -L git.io/antigen > "$HOME/antigen.zsh"
 
-ln -sfn ${DOTFILES_ROOT}/zsh/.zshrc ~
-ln -sfn ${DOTFILES_ROOT}/zsh/.antigenrc ~
-ln -sfn ${DOTFILES_ROOT}/zsh/.zsh-custom-functions ~
-ln -sfn ${DOTFILES_ROOT}/zsh/.p10k.zsh ~
+ln -sfn ${SCRIPTPATH}/zsh/.zshrc ~
+ln -sfn ${SCRIPTPATH}/zsh/.antigenrc ~
+ln -sfn ${SCRIPTPATH}/zsh/.zsh-custom-functions ~
+ln -sfn ${SCRIPTPATH}/zsh/.p10k.zsh ~

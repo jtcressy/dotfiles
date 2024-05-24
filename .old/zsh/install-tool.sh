@@ -24,7 +24,7 @@ else
 fi
 
 # Install antigen for vundle-like package management for zsh
-curl -L git.io/antigen > "$HOME/antigen.zsh"
+curl -L git.io/antigen > "$HOME/.antigen.zsh"
 
 ln -sfn ${SCRIPTPATH}/.zshrc ~
 ln -sfn ${SCRIPTPATH}/.antigenrc ~

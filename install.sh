@@ -1,40 +1,30 @@
 #!/bin/sh
-#
-# install.sh installs things.
-# Absolute path to this script, e.g. /home/user/bin/foo.sh
-SCRIPT=$(readlink -f "$0")
-# Absolute path this script is in, thus /home/user/bin
-SCRIPTPATH=$(dirname "$SCRIPT")
 
-SCRIPT_NAME=${1:-"install.sh"}
+# -e: exit on error
+# -u: exit on unset variables
+set -eu
 
-# Send all our -x output to this file for later debugging
-LOG_DIR="$HOME/.install.sh.logs"
-mkdir -p "${LOG_DIR}"
-exec 1>"${LOG_DIR}/stdout"
-exec 2>"${LOG_DIR}/stderr"
-
-set -x
-
-echo "${SCRIPT_NAME} start: $(date)"
-
-export DOTFILES_ROOT=$(pwd -P)
-
-set -e
-
-echo ''
-
-# find the installers and run them iteratively
-echo "👟 Running installers 👟"
-for installer in $(find $SCRIPTPATH -name "*install-tool.sh"); do
-  sh -c "${installer}"
-done
-
-if $CODESPACES
-then
-  echo "Running Codespaces post start"
-  sh $SCRIPTPATH/codespaces-post-start
+if ! chezmoi="$(command -v chezmoi)"; then
+  bin_dir="${HOME}/.local/bin"
+  chezmoi="${bin_dir}/chezmoi"
+  echo "Installing chezmoi to '${chezmoi}'" >&2
+  if command -v curl >/dev/null; then
+    chezmoi_install_script="$(curl -fsSL https://chezmoi.io/get)"
+  elif command -v wget >/dev/null; then
+    chezmoi_install_script="$(wget -qO- https://chezmoi.io/get)"
+  else
+    echo "To install chezmoi, you must have curl or wget installed." >&2
+    exit 1
+  fi
+  sh -c "${chezmoi_install_script}" -- -b "${bin_dir}"
+  unset chezmoi_install_script bin_dir
 fi
 
-echo ''
-echo '🏁 All installed! 🏁'
+# POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
+script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
+
+set -- init --apply --source="${script_dir}"
+
+echo "Running 'chezmoi $*'" >&2
+# exec: replace current process with chezmoi
+exec "$chezmoi" "$@"

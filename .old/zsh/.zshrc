@@ -1,4 +1,4 @@
-source $HOME/antigen.zsh
+source $HOME/.antigen.zsh
 antigen init $HOME/.antigenrc
 
 #GPG setup (todo: make this a dedicated gpg setup plugin for antigen on github)

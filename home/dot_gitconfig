@@ -3,11 +3,13 @@
 [user]
 	name = Joel Cressy
 	signingkey = F31D65DBCC3A0E21
-[includeIf "hasconfig:remote.*.url:**github.com/jtcressy*/**"]
+[includeIf "hasconfig:remote.*.url:*github.com:*/**"]
 	path = ~/.personal.gitconfig
-[includeIf "hasconfig:remote.*.url:**nvidia.com**"]
+[includeIf "hasconfig:remote.*.url:*://*github.com/*/**"]
+	path = ~/.personal.gitconfig
+[includeIf "hasconfig:remote.*.url:*nvidia.com:*/**"]
 	path = ~/.nvidia.gitconfig
-[includeIf "hasconfig:remote.*.url:**github.com/nvidia*/**"]
+[includeIf "hasconfig:remote.*.url:*://*nvidia.com*/*/**"]
 	path = ~/.nvidia.gitconfig
 [filter "lfs"]
 	required = true

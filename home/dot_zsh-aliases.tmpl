@@ -1,0 +1,12 @@
+
+alias kx=kubectl-ctx
+alias kn=kubectl-ns
+alias tf=terraform
+alias k9r="k9s --readonly"
+
+{{ if eq .chezmoi.os "darwin" }}
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+{{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
+{{ end }}

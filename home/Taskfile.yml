@@ -1,8 +1,14 @@
 ---
 version: 3
 
+includes:
+  chezmoi:
+    taskfile: ~/.taskfiles/chezmoi/Taskfile.yaml
+    aliases:
+      - "home"
+
 tasks:
   default:
     silent: true
     cmds:
-      - task -l
+      - task -g -l

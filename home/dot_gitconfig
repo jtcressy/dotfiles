@@ -1,0 +1,16 @@
+[commit]
+	gpgsign = true
+[user]
+	name = Joel Cressy
+	signingkey = F31D65DBCC3A0E21
+[includeIf "hasconfig:remote.*.url:**github.com/jtcressy*/**"]
+	path = ~/.personal.gitconfig
+[includeIf "hasconfig:remote.*.url:**nvidia.com**"]
+	path = ~/.nvidia.gitconfig
+[includeIf "hasconfig:remote.*.url:**github.com/nvidia*/**"]
+	path = ~/.nvidia.gitconfig
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

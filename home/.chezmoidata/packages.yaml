@@ -1,9 +1,24 @@
 packages:
   brewtaps:
     - siderolabs/tap
+    - beryju/tap
+    - dopplerhq/cli
+    - mike-engel/jwt-cli
+    - nats-io/nats-tools
+    - teamookla/speedtest
   common:
     brews:
       - argocd
+      - arping
+      - coreutils
+      - asdf
+      - cowsay
+      - crane
+      - cue
+      - dive
+      - doppler
+      - earthly
+      - fortune
       - bat
       - chezmoi
       - findutils
@@ -11,12 +26,26 @@ packages:
       - git
       - gh
       - go
+      - go-task
       - helm
+      - htop
       - jq
+      - jwt-cli
+      - kind
+      - korb
       - kubernetes-cli
       - kubectx
+      - kustomize
       - k9s
       - minikube
+      - nats
+      - lolcat
+      - mage
+      - neofetch
+      - nmap
+      - nvm
+      - pre-commit
+      - restic
       - ollama
       - platformio
       - tldr
@@ -24,10 +53,13 @@ packages:
       - talosctl
       - omnictl
       - openapi-generator
+      - speedtest
       - thefuck
       - tree
+      - vault
       - vim
       - wget
+      - watch
       - yq
       - zoxide
       - zsh
@@ -47,7 +79,11 @@ packages:
       - 1password-cli
       - alacritty
       - adguard
+      - flux
       - font-gohufont-nerd-font
+      - httpie
+      - krisp
+      - mqttx
       - ledger-live
       - obsidian
       - utm

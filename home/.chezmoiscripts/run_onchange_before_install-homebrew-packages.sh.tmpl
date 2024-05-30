@@ -4,6 +4,10 @@ export HOMEBREW_INSTALL_FROM_API=1
 {{ if eq .chezmoi.os "darwin" -}}
 alias brew=/opt/homebrew/bin/brew
 
+{{ range .packages.brewtaps -}}
+brew tap {{ . }}
+{{ end -}}
+
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range .packages.darwin.brews -}}
 brew {{ . | quote }}
@@ -23,6 +27,10 @@ EOF
 
 {{ else if eq .chezmoi.os "linux" -}}
 alias brew=/home/linuxbrew/.linuxbrew/bin/brew
+
+{{ range .packages.brewtaps -}}
+brew tap {{ . }}
+{{ end -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range .packages.linux.brews -}}

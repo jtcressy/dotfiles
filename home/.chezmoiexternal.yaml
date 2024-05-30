@@ -1,4 +1,4 @@
-".antigen.zsh":
-  type: file
-  url: https://git.io/antigen
+".antidote":
+  type: git-repo
+  url: https://github.com/mattmc3/antidote.git
   refreshPeriod: 168h

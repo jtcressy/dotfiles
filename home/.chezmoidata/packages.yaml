@@ -82,6 +82,7 @@ packages:
       - flux
       - font-gohufont-nerd-font
       - httpie
+      - iterm2
       - krisp
       - mqttx
       - ledger-live

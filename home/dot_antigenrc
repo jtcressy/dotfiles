@@ -1,0 +1,38 @@
+antigen use oh-my-zsh
+
+antigen bundle ohmyzsh/ohmyzsh
+antigen bundle git
+antigen bundle cp
+antigen bundle colorize
+antigen bundle man
+antigen bundle encode64
+antigen bundle history
+antigen bundle sprunge
+antigen bundle brew
+antigen bundle macos
+antigen bundle pyenv
+if (command -v thefuck > /dev/null) && [ -x "$(command -v thefuck)" ];
+then
+  antigen bundle thefuck
+fi
+
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle cda0/zsh-tfenv
+antigen bundle chrissicool/zsh-256color
+antigen bundle bossjones/boss-docker-zsh-plugin
+antigen bundle bossjones/boss-git-zsh-plugin
+antigen bundle rawkode/zsh-docker-run
+antigen bundle axtl/gpg-agent.zsh
+antigen bundle Czocher/gpg-crypt
+antigen bundle digitalraven/omz-homebrew
+antigen bundle changyuheng/zsh-interactive-cd
+antigen bundle unixorn/tumult.plugin.zsh@main
+antigen bundle rbirnie/oh-my-zsh-keybase
+antigen bundle littleq0903/gcloud-zsh-completion
+
+
+antigen theme romkatv/powerlevel10k
+
+antigen apply

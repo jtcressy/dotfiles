@@ -1,0 +1,67 @@
+packages:
+  brewtaps:
+    - siderolabs/tap
+  common:
+    brews:
+      - argocd
+      - bat
+      - chezmoi
+      - findutils
+      - fzf
+      - git
+      - gh
+      - go
+      - helm
+      - jq
+      - kubernetes-cli
+      - kubectx
+      - k9s
+      - minikube
+      - ollama
+      - platformio
+      - tldr
+      - talhelper
+      - talosctl
+      - omnictl
+      - openapi-generator
+      - thefuck
+      - tree
+      - vim
+      - wget
+      - yq
+      - zoxide
+      - zsh
+  linux:
+    brews: []
+  darwin:
+    brews:
+      - gnupg
+      - pinentry-mac
+      - grep
+      - mas
+      - trash
+      - wifi-password
+    casks:
+      - gpg-suite
+      - 1password
+      - 1password-cli
+      - alacritty
+      - adguard
+      - font-gohufont-nerd-font
+      - ledger-live
+      - obsidian
+      - utm
+      - raycast
+      - clop
+      - keybase
+      - spotify
+      - telegram
+      - visual-studio-code
+      - jetbrains-toolbox
+    mas: # Mac App Store manager
+      - name: 1Password for Safari
+        id: 1569813296
+      - name: Xcode
+        id: 497799835
+      - name: Velja
+        id: 1607635845

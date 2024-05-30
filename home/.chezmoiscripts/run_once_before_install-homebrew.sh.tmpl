@@ -1,0 +1,17 @@
+#!{{ lookPath "sh" }}
+
+export HOMEBREW_INSTALL_FROM_API=1
+{{ if eq .chezmoi.os "darwin" -}}
+alias brew=/opt/homebrew/bin/brew
+{{ else if eq .chezmoi.os "linux" -}}
+alias brew=/home/linuxbrew/.linuxbrew/bin/brew
+{{ end -}}
+
+{{ if not (eq .chezmoi.os "windows") -}}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+{{ range .packages.brewtaps -}}
+brew tap {{ . }}
+{{ end -}}
+
+{{ end -}}

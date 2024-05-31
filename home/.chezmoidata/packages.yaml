@@ -75,6 +75,7 @@ packages:
       - trash
       - wifi-password
     casks:
+      - aerial
       - gpg-suite
       - 1password
       - 1password-cli

@@ -24,6 +24,7 @@ packages:
       - findutils
       - fzf
       - git
+      - git-delta
       - gh
       - go
       - go-task

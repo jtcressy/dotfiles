@@ -47,7 +47,6 @@ packages:
       - nvm
       - pre-commit
       - restic
-      - ollama
       - platformio
       - tldr
       - talhelper
@@ -65,7 +64,8 @@ packages:
       - zoxide
       - zsh
   linux:
-    brews: []
+    brews:
+    - ollama
   darwin:
     brews:
       - gnupg
@@ -88,6 +88,7 @@ packages:
       - mqttx
       - ledger-live
       - obsidian
+      - ollama
       - utm
       - raycast
       - clop

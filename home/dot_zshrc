@@ -48,6 +48,7 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 export PATH="${PATH}:${HOME}/go/bin"
 export PATH="${PATH}:${HOME}/bin"
 export PATH=/usr/local/sbin:$PATH
+export PATH="${PATH}:${HOME}/.local/bin"
 [ $(command -v thefuck) ] && eval "$(thefuck --alias)"
 [ $(command -v fzf) ] && eval "$(fzf --zsh)"
 
@@ -57,3 +58,4 @@ export PATH=/usr/local/sbin:$PATH
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
   zprof
 fi
+

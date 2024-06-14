@@ -23,6 +23,7 @@ packages:
       - chezmoi
       - findutils
       - fzf
+      - glow
       - git
       - git-delta
       - gh

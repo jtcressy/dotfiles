@@ -32,3 +32,5 @@
 	colorMoved = default
 [pull]
 	rebase = true
+[url "ssh://git@gitlab-master.nvidia.com:12051"]
+	insteadOf = https://gitlab-master.nvidia.com

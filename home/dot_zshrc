@@ -39,7 +39,7 @@ fi
 
 # Make VSCode the default editor for the terminal ONLY if the environment
 # is codespaces, because we can rely on vscode being always available
-if $CODESPACES
+if [[ -n "$CODESPACES" && "$CODESPACES" != "false" ]]
 then
   export EDITOR="code --wait"
 fi

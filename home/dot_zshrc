@@ -53,6 +53,7 @@ export PATH="${PATH}:${HOME}/.local/bin"
 [ $(command -v fzf) ] && eval "$(fzf --zsh)"
 
 export PATH="${PATH}:${HOME}/workspace/nvidia/arbor/bin"
+export KUBECONFIG=~/.kube/config:~/.kube/scp-config
 
 if [ -f "${HOME}/.config/fabric/fabric-bootstrap.inc" ]; then . "${HOME}/.config/fabric/fabric-bootstrap.inc"; fi
 

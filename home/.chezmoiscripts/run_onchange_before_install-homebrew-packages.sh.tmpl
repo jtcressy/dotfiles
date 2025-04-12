@@ -8,7 +8,7 @@ alias brew=/opt/homebrew/bin/brew
 brew tap {{ . }}
 {{ end -}}
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.darwin.brews -}}
 brew {{ . | quote }}
 {{ end -}}
@@ -32,7 +32,10 @@ alias brew=/home/linuxbrew/.linuxbrew/bin/brew
 brew tap {{ . }}
 {{ end -}}
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+# First install GCC explicitly
+brew install gcc
+
+brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.linux.brews -}}
 brew {{ . | quote }}
 {{ end -}}

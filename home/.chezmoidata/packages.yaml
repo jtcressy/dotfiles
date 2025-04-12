@@ -8,6 +8,8 @@ packages:
     - teamookla/speedtest
   common:
     brews:
+      - gcc
+      - llvm
       - argocd
       - arping
       - coreutils
@@ -34,13 +36,13 @@ packages:
       - jq
       - jwt-cli
       - kind
-      - korb
+      # Temporarily removing korb
       - kubernetes-cli
       - kubectx
       - kustomize
       - k9s
       - minikube
-      - nats
+      # Temporarily removing nats
       - lolcat
       - mage
       - neofetch
@@ -52,12 +54,11 @@ packages:
       - tldr
       - talhelper
       - talosctl
-      - omnictl
+      # Temporarily removing omnictl
       - openapi-generator
-      - speedtest
+      # Temporarily removing speedtest
       - thefuck
       - tree
-      - vault
       - vim
       - wget
       - watch
@@ -65,8 +66,7 @@ packages:
       - zoxide
       - zsh
   linux:
-    brews:
-    - ollama
+    brews: []
   darwin:
     brews:
       - gnupg

@@ -1,3 +1,18 @@
 dive-in-docker () {
   docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive -- $@
 }
+
+# Helper function for reconnecting YubiKey in WSL
+yubikey-wsl-reconnect () {
+  echo "Restarting pcscd service to detect YubiKey..."
+  sudo service pcscd restart
+  echo "Waiting for YubiKey to be detected..."
+  sleep 2
+  gpg --card-status
+  echo ""
+  echo "If your YubiKey is not detected, make sure it's connected to Windows"
+  echo "and run the following commands in Windows PowerShell (as Administrator):"
+  echo "usbipd list                  # Find your YubiKey's BUSID"
+  echo "usbipd bind --busid XX-XX    # Replace XX-XX with your YubiKey's BUSID"
+  echo "usbipd attach --busid XX-XX --wsl"
+}

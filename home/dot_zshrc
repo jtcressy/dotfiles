@@ -24,8 +24,9 @@ antidote load
 autoload -Uz promptinit && promptinit && prompt powerlevel10k
 
 #GPG setup (todo: make this a dedicated gpg setup plugin for antigen on github)
-export GPG_TTY=$(tty)
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+#export GPG_TTY=$(tty)
+#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export SSH_AUTH_SOCK=$(launchctl getenv SSH_AUTH_SOCK)
 
 # Aliases
 if [ -f $HOME/.zsh-aliases ];
@@ -53,7 +54,7 @@ export PATH="${PATH}:${HOME}/.local/bin"
 [ $(command -v fzf) ] && eval "$(fzf --zsh)"
 
 export PATH="${PATH}:${HOME}/workspace/nvidia/arbor/bin"
-export KUBECONFIG=~/.kube/config:~/.kube/scp-config
+export KUBECONFIG=~/.kube/config:~/.kube/scp-config:~/.kube/ngcops-eks_config
 
 if [ -f "${HOME}/.config/fabric/fabric-bootstrap.inc" ]; then . "${HOME}/.config/fabric/fabric-bootstrap.inc"; fi
 

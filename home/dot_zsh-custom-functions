@@ -6,6 +6,8 @@ dive-in-docker () {
 yubikey-wsl-reconnect () {
   echo "Restarting pcscd service to detect YubiKey..."
   sudo service pcscd restart
+  echo "Restarting gpg-agent..."
+  gpgconf --kill gpg-agent
   echo "Waiting for YubiKey to be detected..."
   sleep 2
   gpg --card-status

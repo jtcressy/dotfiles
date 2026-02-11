@@ -24,6 +24,7 @@ packages:
       - bat
       - chezmoi
       - findutils
+      - fish
       - fzf
       - glow
       - git
@@ -50,6 +51,7 @@ packages:
       - nvm
       - pre-commit
       - restic
+      - starship
       - platformio
       - tldr
       - talhelper

@@ -1,0 +1,48 @@
+# Abbreviations - Fish's better version of aliases
+# These expand visually when you press Space, so you see the full command
+
+# Personal
+abbr -a home chezmoi
+abbr -a kx kubectl-ctx
+abbr -a kn kubectl-ns
+abbr -a tf terraform
+abbr -a k9r 'k9s --readonly'
+
+# Git
+abbr -a g git
+abbr -a gst 'git status'
+abbr -a gco 'git checkout'
+abbr -a gcm 'git commit -m'
+abbr -a gp 'git push'
+abbr -a gl 'git pull'
+abbr -a gd 'git diff'
+abbr -a ga 'git add'
+abbr -a gaa 'git add --all'
+abbr -a gb 'git branch'
+abbr -a glog 'git log --oneline --graph --decorate'
+
+# Kubectl
+abbr -a k kubectl
+abbr -a kgp 'kubectl get pods'
+abbr -a kgs 'kubectl get svc'
+abbr -a kgd 'kubectl get deployments'
+abbr -a kaf 'kubectl apply -f'
+abbr -a kdp 'kubectl describe pod'
+abbr -a kl 'kubectl logs'
+abbr -a klf 'kubectl logs -f'
+
+# Terraform
+abbr -a tfa 'terraform apply'
+abbr -a tfp 'terraform plan'
+abbr -a tfi 'terraform init'
+abbr -a tfd 'terraform destroy'
+
+# Common
+abbr -a ll 'ls -lh'
+abbr -a la 'ls -lAh'
+abbr -a lt 'ls -lth'
+
+{{ if eq .chezmoi.os "darwin" -}}
+# macOS
+abbr -a tailscale /Applications/Tailscale.app/Contents/MacOS/Tailscale
+{{ end -}}

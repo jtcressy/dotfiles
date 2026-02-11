@@ -1,0 +1,7 @@
+theme = Vercel
+font-family = GohuFont uni14 Nerd Font Mono
+
+background-opacity = 0.45
+background-blur = 35
+
+command = fish

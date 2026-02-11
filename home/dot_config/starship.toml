@@ -1,0 +1,93 @@
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$cmd_duration\
+$nodejs\
+$golang\
+$python\
+$ruby\
+$rust\
+$terraform\
+$kubernetes\
+$aws\
+$azure\
+$gcloud\
+$line_break\
+$character"""
+
+[os]
+disabled = false
+style = "bold white"
+
+[os.symbols]
+Macos = "󰀵 "
+Linux = "󰌽 "
+
+[directory]
+truncation_length = 3
+truncation_symbol = ".../"
+style = "bold cyan"
+
+[git_branch]
+style = "bold purple"
+
+[git_status]
+style = "bold red"
+
+[fill]
+symbol = " "
+
+[cmd_duration]
+min_time = 2000
+style = "bold yellow"
+
+[nodejs]
+detect_extensions = ["js", "mjs", "cjs", "ts"]
+detect_files = ["package.json", ".node-version"]
+style = "bold green"
+
+[golang]
+detect_extensions = ["go"]
+detect_files = ["go.mod", "go.sum"]
+style = "bold cyan"
+
+[python]
+detect_extensions = ["py"]
+detect_files = ["requirements.txt", "pyproject.toml", "Pipfile"]
+style = "bold yellow"
+
+[ruby]
+detect_extensions = ["rb"]
+detect_files = ["Gemfile"]
+style = "bold red"
+
+[rust]
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml"]
+style = "bold red"
+
+[terraform]
+detect_extensions = ["tf", "tfvars", "hcl"]
+style = "bold 105"
+
+[kubernetes]
+disabled = false
+style = "bold blue"
+format = '[$symbol$context( \($namespace\))]($style) '
+
+[aws]
+style = "bold 208"
+
+[azure]
+disabled = false
+style = "bold blue"
+
+[gcloud]
+style = "bold blue"
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"

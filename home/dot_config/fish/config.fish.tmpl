@@ -1,0 +1,55 @@
+# Fish shell configuration
+
+# Environment variables
+set -gx COLORTERM truecolor
+
+# PATH
+fish_add_path $HOME/.krew/bin
+fish_add_path $HOME/go/bin
+fish_add_path $HOME/bin
+fish_add_path $HOME/.local/bin
+fish_add_path /usr/local/sbin
+{{ if eq .chezmoi.os "linux" -}}
+fish_add_path $HOME/workspace/nvidia/arbor/bin
+{{ end -}}
+
+# KUBECONFIG
+set -gx KUBECONFIG $HOME/.kube/config:$HOME/.kube/scp-config:$HOME/.kube/ngcops-eks_config
+
+# SSH agent
+{{ if eq .chezmoi.os "darwin" -}}
+set -gx SSH_AUTH_SOCK (launchctl getenv SSH_AUTH_SOCK)
+{{ else -}}
+set -gx SSH_AUTH_SOCK $HOME/.1password/agent.sock
+{{ end -}}
+
+# GPG
+set -gx GPG_TTY (tty)
+
+# Codespaces editor
+if set -q CODESPACES; and test "$CODESPACES" != "false"
+    set -gx EDITOR "code --wait"
+end
+
+# Tool integrations (only if available)
+if type -q starship
+    starship init fish | source
+end
+
+if type -q zoxide
+    zoxide init fish | source
+end
+
+if type -q fzf
+    fzf --fish | source
+end
+
+if type -q thefuck
+    thefuck --alias | source
+end
+
+# Fisher bootstrap - auto-install on first run
+if not functions -q fisher
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+    fisher update
+end

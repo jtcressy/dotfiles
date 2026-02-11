@@ -1,0 +1,4 @@
+# Switch to Fish for interactive sessions
+if [ -t 0 ] && command -v fish &>/dev/null; then
+    exec fish -l
+fi

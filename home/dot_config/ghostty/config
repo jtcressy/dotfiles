@@ -1,7 +1,9 @@
-theme = Vercel
-font-family = GohuFont uni14 Nerd Font Mono
-
-background-opacity = 0.45
-background-blur = 35
-
+term = "xterm-256color"
+theme = "iTerm2 Default"
+font-family = "GohuFont 14 Nerd Font Mono"
+background-blur = true
+background-opacity = 0.8
+split-divider-color = magenta
+macos-titlebar-style = tabs
+macos-icon = "paper"
 command = fish

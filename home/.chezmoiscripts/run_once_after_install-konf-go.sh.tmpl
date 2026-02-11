@@ -1,0 +1,13 @@
+#!{{ lookPath "sh" }}
+
+# Install konf-go (kubeconfig manager) via go install
+# No homebrew formula available
+
+if command -v go >/dev/null 2>&1; then
+    if ! command -v konf-go >/dev/null 2>&1; then
+        echo "Installing konf-go..."
+        go install github.com/simontheleg/konf-go@latest
+    fi
+else
+    echo "Warning: go not found, skipping konf-go installation"
+fi

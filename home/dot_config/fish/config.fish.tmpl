@@ -9,16 +9,25 @@ fish_add_path $HOME/go/bin
 fish_add_path $HOME/bin
 fish_add_path $HOME/.local/bin
 fish_add_path /usr/local/sbin
+fish_add_path $HOME/.rd/bin
 {{ if eq .chezmoi.os "linux" -}}
 fish_add_path $HOME/workspace/nvidia/arbor/bin
 {{ end -}}
 
-# KUBECONFIG
-set -gx KUBECONFIG $HOME/.kube/config:$HOME/.kube/scp-config:$HOME/.kube/ngcops-eks_config
+# Kubeconfig management
+if type -q konf-go
+    konf-go shellwrapper fish | source
+    konf --silent set -
+else
+    set -gx KUBECONFIG $HOME/.kube/config
+end
 
 # SSH agent
 {{ if eq .chezmoi.os "darwin" -}}
-set -gx SSH_AUTH_SOCK (launchctl getenv SSH_AUTH_SOCK)
+# SSH agent via keychain (macOS)
+if type -q keychain
+    keychain --eval --noinherit -q | source
+end
 {{ else -}}
 set -gx SSH_AUTH_SOCK $HOME/.1password/agent.sock
 {{ end -}}
@@ -46,4 +55,8 @@ end
 
 if type -q thefuck
     thefuck --alias | source
+end
+
+if type -q bat
+    alias cat "bat --theme-dark=gruvbox-dark --theme-light=gruvbox-light"
 end

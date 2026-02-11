@@ -85,14 +85,14 @@ packages:
       - 1password-cli
       - alacritty
       - adguard
-      - flux
+      - flux-app
       - font-gohufont-nerd-font
-      - httpie
+      - httpie-desktop
       - iterm2
       - mqttx
-      - ledger-live
+      - ledger-wallet
       - obsidian
-      - ollama
+      - ollama-app
       - utm
       - clop
       - keybase

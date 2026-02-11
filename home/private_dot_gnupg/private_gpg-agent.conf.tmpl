@@ -2,7 +2,7 @@ default-cache-ttl 600
 max-cache-ttl 7200
 enable-ssh-support
 {{ if eq .chezmoi.os "darwin" -}}
-pinentry-program /opt/homebrew/bin/pinentry-mac
+pinentry-program /opt/homebrew/bin/pinentry-touchid
 {{ else -}}
 pinentry-program /usr/bin/pinentry-gtk-2
 {{ end -}}

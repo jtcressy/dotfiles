@@ -3,8 +3,14 @@
 
 # Personal
 abbr -a home chezmoi
-abbr -a kx kubectl-ctx
-abbr -a kn kubectl-ns
+# Kubeconfig switching
+if type -q konf-go
+    abbr -a kx 'konf set'
+    abbr -a kn 'konf ns'
+else
+    abbr -a kx kubectx
+    abbr -a kn kubens
+end
 abbr -a tf terraform
 abbr -a k9r 'k9s --readonly'
 

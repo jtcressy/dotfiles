@@ -1,6 +1,7 @@
 packages:
   brewtaps:
     - siderolabs/tap
+    - jorgelbg/tap
     - beryju/tap
     - dopplerhq/cli
     - mike-engel/jwt-cli
@@ -73,6 +74,7 @@ packages:
     brews:
       - gnupg
       - pinentry-mac
+      - pinentry-touchid
       - grep
       - mas
       - trash
@@ -87,13 +89,11 @@ packages:
       - font-gohufont-nerd-font
       - httpie
       - iterm2
-      - krisp
       - mqttx
       - ledger-live
       - obsidian
       - ollama
       - utm
-      - raycast
       - clop
       - keybase
       - spotify

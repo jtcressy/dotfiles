@@ -47,9 +47,3 @@ end
 if type -q thefuck
     thefuck --alias | source
 end
-
-# Fisher bootstrap - auto-install on first run
-if not functions -q fisher
-    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
-    fisher update
-end

@@ -2,22 +2,16 @@ packages:
   brewtaps:
     - siderolabs/tap
     - jorgelbg/tap
-    - beryju/tap
     - dopplerhq/cli
     - mike-engel/jwt-cli
-    - nats-io/nats-tools
-    - teamookla/speedtest
   common:
     brews:
       - gcc
-      - llvm
       - argocd
       - arping
       - coreutils
-      - asdf
       - cowsay
       - crane
-      - cue
       - dive
       - doppler
       - earthly
@@ -38,28 +32,23 @@ packages:
       - jq
       - jwt-cli
       - kind
-      # Temporarily removing korb
       - kubernetes-cli
       - kubectx
       - kustomize
       - k9s
       - minikube
-      # Temporarily removing nats
       - lolcat
       - mage
-      - neofetch
+      - fastfetch
       - nmap
       - nvm
       - pre-commit
       - restic
       - starship
-      - platformio
       - tldr
       - talhelper
       - talosctl
-      # Temporarily removing omnictl
       - openapi-generator
-      # Temporarily removing speedtest
       - thefuck
       - tree
       - vim
@@ -67,7 +56,6 @@ packages:
       - watch
       - yq
       - zoxide
-      - zsh
   linux:
     brews: []
   darwin:
@@ -83,12 +71,10 @@ packages:
       - gpg-suite
       - 1password
       - 1password-cli
-      - alacritty
       - adguard
       - flux-app
       - font-gohufont-nerd-font
       - httpie-desktop
-      - iterm2
       - mqttx
       - ledger-wallet
       - obsidian

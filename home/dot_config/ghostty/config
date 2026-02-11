@@ -6,4 +6,4 @@ background-opacity = 0.8
 split-divider-color = magenta
 macos-titlebar-style = tabs
 macos-icon = "paper"
-command = fish
+command = /opt/homebrew/bin/fish

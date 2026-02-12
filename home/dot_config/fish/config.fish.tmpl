@@ -2,6 +2,7 @@
 
 # Environment variables
 set -gx COLORTERM truecolor
+set -gx SHELL (which fish)
 
 # PATH
 fish_add_path $HOME/.krew/bin
@@ -43,6 +44,7 @@ end
 # Tool integrations (only if available)
 if type -q starship
     starship init fish | source
+    enable_transience
 end
 
 if type -q zoxide

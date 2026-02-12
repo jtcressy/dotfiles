@@ -1,6 +1,5 @@
-term = "xterm-256color"
 theme = "iTerm2 Default"
-font-family = "GohuFont 14 Nerd Font Mono"
+font-family = "GohuFont uni14 Nerd Font Mono"
 background-blur = true
 background-opacity = 0.8
 split-divider-color = magenta

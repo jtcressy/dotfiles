@@ -1,0 +1,17 @@
+#!/bin/sh
+# Wrapper that picks the best available pinentry program.
+# Prefers graphical pinentry when a display is available, falls back to curses.
+
+if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+    for p in pinentry-gtk-2 pinentry-qt pinentry-gnome3; do
+        cmd=$(command -v "$p" 2>/dev/null) && exec "$cmd" "$@"
+    done
+fi
+
+# Fallback for SSH sessions or when no graphical pinentry is found
+for p in pinentry-curses pinentry-tty pinentry; do
+    cmd=$(command -v "$p" 2>/dev/null) && exec "$cmd" "$@"
+done
+
+echo "ERR 113 No pinentry program found" >&2
+exit 1

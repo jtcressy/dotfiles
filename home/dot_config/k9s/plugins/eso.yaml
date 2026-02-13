@@ -1,0 +1,12 @@
+plugins:
+  eso-refresh:
+    shortCut: "Shift-T"
+    description: "Trigger sync of External Secret"
+    scopes:
+      - externalsecret
+    command: bash
+    args:
+      - -c
+      - "kubectl annotate externalsecret -n $NAMESPACE $NAME force-sync=$(date +%s) --overwrite"
+    background: true
+    confirm: true

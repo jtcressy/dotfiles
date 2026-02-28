@@ -50,6 +50,7 @@ packages:
       - talosctl
       - openapi-generator
       - thefuck
+      - tmux
       - tree
       - vim
       - wget

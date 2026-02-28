@@ -1,15 +1,11 @@
 # ── Terminal & outer capabilities ────────────────────────────────────────────
 # Inner TERM: correct descriptor for tmux's emulation layer
 set -g default-terminal "tmux-256color"
-# Pass truecolor (RGB), styled underlines (Su), and kitty keyboard protocol
-# (extkeys) through to outer terminals. Index 100+ avoids conflicts with
-# tmux's built-in defaults (indices 0-2).
-# Covers xterm-256color (typical SSH client TERM) and xterm-ghostty (ghostty native)
-set -g terminal-features[100] "xterm*:RGB:Su:extkeys"
-set -g terminal-features[101] "xterm-ghostty:RGB:Su:extkeys"
-# Forward extended keys (kitty protocol) to inner apps — fixes Shift+Enter in
-# claude-code, opencode, etc. when connecting via ghostty -> ssh -> tmux
+set -as terminal-features "xterm*:RGB:Su:extkeys"
+set -as terminal-features "xterm-ghostty:RGB:Su:extkeys"
+# Send CSI-u extended keys to all apps (tmux lacks KKP negotiation support)
 set -g extended-keys always
+set -g extended-keys-format csi-u
 
 # ── Session behaviour ─────────────────────────────────────────────────────────
 set -g destroy-unattached off

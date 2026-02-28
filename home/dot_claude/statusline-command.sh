@@ -126,7 +126,7 @@ output+="${BG_YELLOW}${FG} ${truncated} "
 if [ -n "$git_branch" ]; then
     # Separator: yellow -> aqua
     output+="${BG_AQUA}${FG_YELLOW}${SEP}"
-    output+="${BG_AQUA}${FG}  ${git_branch}${git_status_str} "
+    output+="${BG_AQUA}${FG} ${git_branch}${git_status_str} "
     # Separator: aqua -> blue
     output+="${BG_BLUE}${FG_AQUA}${SEP}"
 else

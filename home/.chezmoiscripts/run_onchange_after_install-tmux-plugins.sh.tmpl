@@ -1,0 +1,13 @@
+#!{{ lookPath "sh" }}
+
+# Auto-install TPM plugins non-interactively when tmux.conf changes
+# hash: {{ include "dot_config/tmux/tmux.conf.tmpl" | sha256sum }}
+
+INSTALL_SCRIPT="$HOME/.config/tmux/plugins/tpm/bin/install_plugins"
+
+if [ -x "$INSTALL_SCRIPT" ]; then
+    echo "Installing tmux plugins via TPM..."
+    "$INSTALL_SCRIPT"
+else
+    echo "Warning: TPM install script not found at $INSTALL_SCRIPT, skipping plugin install"
+fi

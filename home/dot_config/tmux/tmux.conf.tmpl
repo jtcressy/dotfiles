@@ -1,0 +1,75 @@
+# ── Terminal & outer capabilities ────────────────────────────────────────────
+# Inner TERM: correct descriptor for tmux's emulation layer
+set -g default-terminal "tmux-256color"
+# Pass truecolor (RGB), styled underlines (Su), and kitty keyboard protocol
+# (extkeys) through to outer terminals. Index 100+ avoids conflicts with
+# tmux's built-in defaults (indices 0-2).
+# Covers xterm-256color (typical SSH client TERM) and xterm-ghostty (ghostty native)
+set -g terminal-features[100] "xterm*:RGB:Su:extkeys"
+set -g terminal-features[101] "xterm-ghostty:RGB:Su:extkeys"
+# Forward extended keys (kitty protocol) to inner apps — fixes Shift+Enter in
+# claude-code, opencode, etc. when connecting via ghostty -> ssh -> tmux
+set -g extended-keys always
+
+# ── Session behaviour ─────────────────────────────────────────────────────────
+set -g destroy-unattached off
+set -g exit-unattached off
+set -g default-shell {{ lookPath "fish" | quote }}
+set -g mouse on
+set -g focus-events on
+# Allow panes to send OSC sequences through to the outer terminal
+# (OSC 52 clipboard, kitty graphics, sixel image rendering, etc.)
+set -g allow-passthrough on
+
+# ── Keyboard & input ──────────────────────────────────────────────────────────
+set -g status-keys vi
+set -g mode-keys vi
+# Reduce escape key delay (default 500ms causes noticeable lag)
+set -g escape-time 10
+
+# ── Prefix key: Ctrl-Space ────────────────────────────────────────────────────
+unbind C-b
+set -g prefix C-Space
+bind C-Space send-prefix
+
+# ── Display & UX ──────────────────────────────────────────────────────────────
+set -g history-limit 50000
+set -g set-clipboard on
+set -g renumber-windows on
+set -g base-index 1
+set -g pane-base-index 1
+set -g display-time 2000
+# Set outer terminal tab/window title to current session:window
+set -g set-titles on
+set -g set-titles-string "#{session_name}:#{window_index} #{window_name}"
+# Show running command as a title bar on pane borders (visible with splits)
+set -wg pane-border-status top
+set -wg pane-border-format " #{pane_index}: #{pane_current_command} "
+
+# ── Environment passthrough on reattach ───────────────────────────────────────
+# Refresh terminal identity vars when reattaching from a different client
+set -ag update-environment "TERM_PROGRAM"
+set -ag update-environment "COLORTERM"
+
+# ── Splits & windows ──────────────────────────────────────────────────────────
+# Open splits and new windows in the current pane's working directory
+bind '"' split-window -v -c "#{pane_current_path}"
+bind '%' split-window -h -c "#{pane_current_path}"
+bind 'c' new-window -c "#{pane_current_path}"
+# Mnemonic aliases: | = horizontal split, - = vertical split
+bind '|' split-window -h -c "#{pane_current_path}"
+bind '-' split-window -v -c "#{pane_current_path}"
+
+# ── Convenience bindings ──────────────────────────────────────────────────────
+# Reload config
+bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded"
+
+# ── Plugins ───────────────────────────────────────────────────────────────────
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'uhs-robert/tmux-oasis'
+set -g @oasis_flavor 'starlight_dark'
+set -g @plugin 'jaclu/tmux-menus'
+set -g @menus_trigger 'Space'
+
+# Initialize TPM (keep this line at the very bottom of tmux.conf)
+run '~/.config/tmux/plugins/tpm/tpm'

@@ -58,7 +58,7 @@ truncated=$(echo "$short_path" | awk -F'/' '{
 
 # Git branch (skip lock to be safe)
 git_branch=""
-if git -C "$cwd" rev-parse --is-inside-work-tree --quiet 2>/dev/null; then
+if git -C "$cwd" rev-parse --is-inside-work-tree --quiet 2>/dev/null 1>/dev/null; then
     git_branch=$(git -C "$cwd" symbolic-ref --short HEAD 2>/dev/null || git -C "$cwd" rev-parse --short HEAD 2>/dev/null)
 fi
 

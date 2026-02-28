@@ -50,7 +50,6 @@ packages:
       - talosctl
       - openapi-generator
       - thefuck
-      - tmux
       - tree
       - vim
       - wget
@@ -61,6 +60,7 @@ packages:
     brews: []
   darwin:
     brews:
+      - tmux
       - gnupg
       - pinentry-mac
       - pinentry-touchid

@@ -51,6 +51,7 @@ packages:
       - openapi-generator
       - thefuck
       - tree
+      - neovim
       - vim
       - wget
       - watch

@@ -28,10 +28,10 @@ BG_BG1="\033[48;5;237m"
 FG_BG1="\033[38;5;237m"
 RESET="\033[0m"
 
-# Powerline separators
-SEP="\ue0b0"
-SEP_START="\ue0b6"
-SEP_END="\ue0b4"
+# Powerline separators (UTF-8 hex bytes for bash 3.x compat)
+SEP=$'\xee\x82\xb0'
+SEP_START=$'\xee\x82\xb6'
+SEP_END=$'\xee\x82\xb4'
 
 input=$(cat)
 

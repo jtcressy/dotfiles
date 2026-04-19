@@ -107,52 +107,35 @@ fi
 # Time
 time_str=$(date +%H:%M)
 
-# Build the status line
-output=""
+# Build the status line as two independent powerline rows.
+# Terminal width is not exposed to statusline scripts (no TTY, no JSON field),
+# so a fixed 2-line layout avoids the narrow-terminal truncation bug where CC
+# silently drops lines that exceed the actual terminal width.
 
-# Opening semicircle: transparent -> orange
-output+="${FG_ORANGE}${SEP_START}"
-
-# User@host segment (orange bg)
-output+="${BG_ORANGE}${FG} $(whoami)@$(hostname -s) "
-
-# Separator: orange -> yellow
-output+="${BG_YELLOW}${FG_ORANGE}${SEP}"
-
-# Directory segment (yellow bg)
-output+="${BG_YELLOW}${FG} ${truncated} "
-
-# Git segment (aqua bg) - only if in a git repo
+# Line 1: identity (user@host, path, git)
+line1="${FG_ORANGE}${SEP_START}"
+line1+="${BG_ORANGE}${FG} $(whoami)@$(hostname -s) "
+line1+="${BG_YELLOW}${FG_ORANGE}${SEP}"
+line1+="${BG_YELLOW}${FG} ${truncated} "
 if [ -n "$git_branch" ]; then
-    # Separator: yellow -> aqua
-    output+="${BG_AQUA}${FG_YELLOW}${SEP}"
-    output+="${BG_AQUA}${FG} ${git_branch}${git_status_str} "
-    # Separator: aqua -> blue
-    output+="${BG_BLUE}${FG_AQUA}${SEP}"
+    line1+="${BG_AQUA}${FG_YELLOW}${SEP}"
+    line1+="${BG_AQUA}${FG} ${git_branch}${git_status_str} "
+    line1+="${RESET}${FG_AQUA}${SEP_END}${RESET}"
 else
-    # Separator: yellow -> blue
-    output+="${BG_BLUE}${FG_YELLOW}${SEP}"
+    line1+="${RESET}${FG_YELLOW}${SEP_END}${RESET}"
 fi
 
-# Model segment (blue bg)
-output+="${BG_BLUE}${FG} ${model}${ctx_str} "
-
-# Usage segment (purple bg) - only if we have token data
+# Line 2: metrics (model + ctx%, tokens + cost, time)
+line2="${FG_BLUE}${SEP_START}"
+line2+="${BG_BLUE}${FG} ${model}${ctx_str} "
 if [ -n "$usage_str" ]; then
-    # Separator: blue -> purple
-    output+="${BG_PURPLE}${FG_BLUE}${SEP}"
-    output+="${BG_PURPLE}${FG} ${usage_str} "
-    # Separator: purple -> bg1
-    output+="${BG_BG1}${FG_PURPLE}${SEP}"
+    line2+="${BG_PURPLE}${FG_BLUE}${SEP}"
+    line2+="${BG_PURPLE}${FG} ${usage_str} "
+    line2+="${BG_BG1}${FG_PURPLE}${SEP}"
 else
-    # Separator: blue -> bg1
-    output+="${BG_BG1}${FG_BLUE}${SEP}"
+    line2+="${BG_BG1}${FG_BLUE}${SEP}"
 fi
+line2+="${BG_BG1}${FG} ${time_str} "
+line2+="${RESET}${FG_BG1}${SEP_END}${RESET}"
 
-# Time segment (bg1)
-output+="${BG_BG1}${FG} ${time_str} "
-
-# Closing semicircle: bg1 -> transparent
-output+="${RESET}${FG_BG1}${SEP_END}${RESET}"
-
-printf "%b" "$output"
+printf "%b\n%b" "$line1" "$line2"

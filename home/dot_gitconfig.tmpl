@@ -1,0 +1,158 @@
+{{- $gitSigningKey := "F31D65DBCC3A0E21" -}}
+{{- $gpg := lookPath "gpg" -}}
+{{- $gitGpgSign := false -}}
+{{- if $gpg -}}
+{{- $probe := `
+gpg_cmd=$1
+key=$2
+key_upper=$(printf '%s' "$key" | tr -d '[:space:]' | tr '[:lower:]' '[:upper:]')
+
+key_listing=$("$gpg_cmd" --batch --no-tty --pinentry-mode cancel --with-colons --list-secret-keys --keyid-format LONG "$key" 2>/dev/null || true)
+key_state=$(printf '%s\n' "$key_listing" | awk -F: -v target="$key_upper" '
+  function ends_with(value, suffix) {
+    return suffix != "" && length(value) >= length(suffix) && substr(value, length(value) - length(suffix) + 1) == suffix
+  }
+
+  ($1 == "sec" || $1 == "ssb") {
+    record_type = $1
+    record_keyid = toupper($5)
+    record_matches_target = ends_with(record_keyid, target)
+    sign_capable = ($12 ~ /s/ && $12 !~ /D/ && $2 != "d" && $2 != "e" && $2 != "i" && $2 != "r")
+    record_sign_capable = sign_capable
+    record_local_secret = (sign_capable && $15 == "+")
+    target_candidate = record_matches_target
+    if (record_matches_target) {
+      if (record_type == "sec") {
+        target_is_primary = 1
+      } else {
+        target_is_subkey = 1
+      }
+    }
+    if (record_type == "ssb" && sign_capable) {
+      has_signing_subkey = 1
+    }
+    if (record_local_secret) {
+      if (record_type == "ssb" && record_matches_target) {
+        target_local_subkey = 1
+      }
+      if (record_type == "ssb") {
+        has_local_subkey = 1
+      } else {
+        has_local_primary = 1
+      }
+    }
+    want_stub_fpr = (sign_capable && $15 != "" && $15 != "+" && $15 != "#")
+    next
+  }
+  $1 == "fpr" && want_stub_fpr {
+    record_fpr = toupper($10)
+    if (ends_with(record_fpr, target)) {
+      target_candidate = 1
+      if (record_type == "sec") {
+        target_is_primary = 1
+      } else {
+        target_is_subkey = 1
+        if (record_sign_capable && record_local_secret) {
+          target_local_subkey = 1
+        }
+      }
+    }
+    if (record_type == "ssb" && target_candidate) {
+      print "target_card_stub_ssb " record_fpr
+    }
+    print "card_stub_" record_type " " record_fpr
+    want_stub_fpr = 0
+    target_candidate = 0
+  }
+  END {
+    if (target_is_primary) print "target_is_primary true"
+    if (target_is_subkey) print "target_is_subkey true"
+    if (target_local_subkey) print "target_local_subkey true"
+    if (has_signing_subkey) print "has_signing_subkey true"
+    if (has_local_subkey) print "has_local_subkey true"
+    if (has_local_primary) print "has_local_primary true"
+  }
+')
+
+if printf '%s\n' "$key_state" | grep -q '^target_is_subkey true$'; then
+  if printf '%s\n' "$key_state" | grep -q '^target_local_subkey true$'; then
+    printf true
+    exit 0
+  fi
+  card_stub_fingerprints=$(printf '%s\n' "$key_state" | awk '$1 == "target_card_stub_ssb" { print $2 }')
+elif printf '%s\n' "$key_state" | grep -q '^has_signing_subkey true$'; then
+  if printf '%s\n' "$key_state" | grep -q '^has_local_subkey true$'; then
+    printf true
+    exit 0
+  fi
+  card_stub_fingerprints=$(printf '%s\n' "$key_state" | awk '$1 == "card_stub_ssb" { print $2 }')
+else
+  if printf '%s\n' "$key_state" | grep -q '^has_local_primary true$'; then
+    printf true
+    exit 0
+  fi
+  card_stub_fingerprints=$(printf '%s\n' "$key_state" | awk '$1 == "card_stub_sec" { print $2 }')
+fi
+
+if [ -z "$card_stub_fingerprints" ]; then
+  printf false
+  exit 0
+fi
+
+card_status=$("$gpg_cmd" --batch --no-tty --pinentry-mode cancel --with-colons --card-status 2>/dev/null || true)
+card_fingerprints=$(printf '%s\n' "$card_status" | awk -F: '$1 == "fpr" && $10 != "" { print toupper($10) }')
+
+for fingerprint in $card_stub_fingerprints; do
+  if printf '%s\n' "$card_fingerprints" | grep -Fqx "$fingerprint"; then
+    printf true
+    exit 0
+  fi
+done
+
+printf false
+` -}}
+{{- $gitGpgSign = eq (trim (output "/bin/sh" "-c" $probe "chezmoi-gpg-signing-key-present" $gpg $gitSigningKey)) "true" -}}
+{{- end -}}
+[commit]
+	# Evaluated when chezmoi renders this file; rerun chezmoi after inserting or removing hardware keys.
+	gpgsign = {{ $gitGpgSign }}
+[user]
+	name = Joel Cressy
+	signingkey = {{ $gitSigningKey }}
+[includeIf "hasconfig:remote.*.url:*github.com:*/**"]
+	path = ~/.personal.gitconfig
+[includeIf "hasconfig:remote.*.url:*://*github.com/*/**"]
+	path = ~/.personal.gitconfig
+[includeIf "hasconfig:remote.*.url:*nvidia.com:*/**"]
+	path = ~/.nvidia.gitconfig
+[includeIf "hasconfig:remote.*.url:*://*nvidia.com*/*/**"]
+	path = ~/.nvidia.gitconfig
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[init]
+	defaultBranch = main
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
+
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential

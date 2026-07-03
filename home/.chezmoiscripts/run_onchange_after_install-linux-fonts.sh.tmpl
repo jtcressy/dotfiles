@@ -1,0 +1,20 @@
+#!{{ lookPath "sh" }}
+
+{{ if eq .chezmoi.os "linux" -}}
+# Install Nerd Fonts on Linux (Homebrew casks only carry fonts on macOS,
+# so the darwin cask list's font-* entries have no Linux equivalent).
+NERD_FONTS_VERSION="v3.4.0"
+FONT_DIR="$HOME/.local/share/fonts/GohuFontNerdFont"
+
+if fc-list | grep -qi "gohufont nerd font"; then
+    echo "GohuFont Nerd Font already installed, skipping"
+else
+    echo "Installing GohuFont Nerd Font ${NERD_FONTS_VERSION}..."
+    TMP_DIR=$(mktemp -d)
+    trap 'rm -rf "$TMP_DIR"' EXIT
+    curl -sL "https://github.com/ryanoasis/nerd-fonts/releases/download/${NERD_FONTS_VERSION}/Gohu.tar.xz" -o "$TMP_DIR/Gohu.tar.xz"
+    mkdir -p "$FONT_DIR"
+    tar -xJf "$TMP_DIR/Gohu.tar.xz" -C "$FONT_DIR"
+    fc-cache -f "$FONT_DIR"
+fi
+{{ end -}}

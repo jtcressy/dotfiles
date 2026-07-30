@@ -45,6 +45,7 @@ packages:
       - pre-commit
       - restic
       - starship
+      - tfenv
       - tldr
       - talhelper
       - talosctl
